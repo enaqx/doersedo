@@ -1,0 +1,31 @@
+{
+  "name": "doersedo",
+  "version": "0.0.0",
+  "description": "Do-ir service",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enaqx/doersedo"
+  },
+  "keywords": [
+    "do-it",
+    "service",
+    "comment",
+    "react"
+  ],
+  "author": "enaqxt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enaqx/doersedo/issues"
+  },
+  "homepage": "https://github.com/enaqx/doersedo"
+}
