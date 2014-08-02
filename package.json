@@ -1,7 +1,7 @@
 {
   "name": "doersedo",
-  "version": "0.0.0",
-  "description": "Do-ir service",
+  "version": "0.0.1",
+  "description": "Do-it service",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.4.3",
@@ -22,7 +22,7 @@
     "comment",
     "react"
   ],
-  "author": "enaqxt",
+  "author": "enaqx",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/enaqx/doersedo/issues"
