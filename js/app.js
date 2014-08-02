@@ -6,9 +6,9 @@ var Comment = React.createClass({
     var rawMarkup = converter.makeHtml(this.props.children.toString());
     return (
       <div className="comment">
-        <h2 className="commentAuthor">
+        <h4 className="commentAuthor">
           {this.props.author}
-        </h2>
+        </h4>
         <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
       </div>
     );
@@ -55,7 +55,7 @@ var CommentBox = React.createClass({
   render: function() {
     return (
       <div className="commentBox">
-        <h1>Comments</h1>
+        <h2>Doersedo</h2>
         <CommentList data={this.state.data} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
       </div>
