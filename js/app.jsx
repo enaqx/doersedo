@@ -1,14 +1,15 @@
 /** @jsx React.DOM */
-var  converter = new Showdown.converter();
+
+var converter = new Showdown.converter();
 
 var Comment = React.createClass({
   render: function() {
     var rawMarkup = converter.makeHtml(this.props.children.toString());
     return (
       <div className="comment">
-        <h4 className="commentAuthor">
+        <h2 className="commentAuthor">
           {this.props.author}
-        </h4>
+        </h2>
         <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
       </div>
     );
@@ -30,19 +31,20 @@ var CommentBox = React.createClass({
   },
   handleCommentSubmit: function(comment) {
     var comments = this.state.data;
-    var newComments = comments.concat([comment]);
-    this.setState({data: newComments});
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type: 'POST',
-      data: comment,
-      success: function(data) {
-        this.setState({data: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
+    comments.push(comment);
+    this.setState({data: comments}, function() {
+      $.ajax({
+        url: this.props.url,
+        dataType: 'json',
+        type: 'POST',
+        data: comment,
+        success: function(data) {
+          this.setState({data: data});
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
     });
   },
   getInitialState: function() {
@@ -55,7 +57,7 @@ var CommentBox = React.createClass({
   render: function() {
     return (
       <div className="commentBox">
-        <h2>Doersedo</h2>
+        <h1>Comments</h1>
         <CommentList data={this.state.data} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
       </div>
@@ -64,10 +66,10 @@ var CommentBox = React.createClass({
 });
 
 var CommentList = React.createClass({
-  render: function()  {
-    var commentNodes = this.props.data.map(function (comment) {
+  render: function() {
+    var commentNodes = this.props.data.map(function(comment, index) {
       return (
-        <Comment author={comment.author}>
+        <Comment author={comment.author} key={index}>
           {comment.text}
         </Comment>
       );
@@ -81,13 +83,10 @@ var CommentList = React.createClass({
 });
 
 var CommentForm = React.createClass({
-   handleSubmit: function() {
+  handleSubmit: function() {
     var author = this.refs.author.getDOMNode().value.trim();
     var text = this.refs.text.getDOMNode().value.trim();
     this.props.onCommentSubmit({author: author, text: text});
-    if (!text || !author) {
-      return false;
-    }
     this.refs.author.getDOMNode().value = '';
     this.refs.text.getDOMNode().value = '';
     return false;
@@ -104,6 +103,6 @@ var CommentForm = React.createClass({
 });
 
 React.renderComponent(
-  <CommentBox url="../data/comments.json" pollInterval={2000} />,
+  <CommentBox url="comments.json" pollInterval={2000} />,
   document.getElementById('content')
 );
