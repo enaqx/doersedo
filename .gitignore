@@ -1,3 +1,15 @@
+# Node dependencies
 node_modules
+
+# OS files
 .DS_Store
 *~
+
+# Temporary files
+tmp
+
+# Compiled JS
+app/js/bundle.js
+
+# Logs
+*.log

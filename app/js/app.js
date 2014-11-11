@@ -1,4 +1,5 @@
-/** @jsx React.DOM */
+var React = require('react');
+var $ = require('jquery');
 
 var converter = new Showdown.converter();
 
@@ -102,7 +103,7 @@ var CommentForm = React.createClass({
   }
 });
 
-React.renderComponent(
+React.render(
   <CommentBox url="comments.json" pollInterval={2000} />,
   document.getElementById('content')
 );

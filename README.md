@@ -1,9 +1,5 @@
 ### Doersedo
-Do-it service, Using React and Node.
+Do-it service
 
-### Install
-```
-npm install
-node server.js
-```
-And visit http://localhost:3000/. Tweak server.js for desired port.
+### Start
+* `$ npm start`
