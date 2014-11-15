@@ -1,8 +1,12 @@
+/**
+ * Web server
+ */
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-var comments = [{author: 'Author', text: 'Comment'}];
+var comments = [];
 
 app.use('/', express.static(__dirname + '/app'));
 app.use(bodyParser.json());
